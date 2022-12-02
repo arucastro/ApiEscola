@@ -42,7 +42,7 @@ ul {
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
+  max-width: 660px;
   background: #fff;
   margin: 20px auto;
   padding: 30px;
