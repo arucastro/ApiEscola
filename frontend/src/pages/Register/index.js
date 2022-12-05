@@ -73,7 +73,7 @@ function Register() {
           />
         </label>
         <label htmlFor="password">
-          password:
+          Senha:
           <input
             type="password"
             value={password}
