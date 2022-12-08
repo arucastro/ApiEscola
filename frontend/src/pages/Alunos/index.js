@@ -14,7 +14,6 @@ function Alunos() {
     async function getData() {
       const response = await axios.get('/alunos');
       setAlunos(response.data);
-      console.log(response.data);
     }
     getData();
   }, []);
