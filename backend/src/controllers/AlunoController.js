@@ -54,7 +54,7 @@ class AlunoController {
 
       return res.json(aluno);
     } catch (e) {
-      return e.errors.map((err) => err.message);
+      return e.errors?.map((err) => err.message);
     }
   }
 
