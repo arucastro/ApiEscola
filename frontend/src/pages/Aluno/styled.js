@@ -24,3 +24,27 @@ export const Form = styled.form`
     margin-top: 10px;
   }
 `;
+
+export const ProfilePicture = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 20px;
+  position: relative;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    border-radius: 50%;
+  }
+`;

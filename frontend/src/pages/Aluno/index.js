@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { isEmail, isInt, isFloat } from 'validator';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { FaUserCircle, FaEdit } from 'react-icons/fa';
 
 import { toast } from 'react-toastify';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { Container } from '../../styles/GlobalStyles';
-import { Form } from './styled';
+import { Form, ProfilePicture } from './styled';
 import Loading from '../../components/loading';
 import * as actions from '../../store/modules/auth/actions';
 
@@ -23,6 +24,7 @@ function Aluno() {
   const [idade, setIdade] = useState('');
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
+  const [foto, setfoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -33,6 +35,8 @@ function Aluno() {
         setIsLoading(true);
         const { data } = await axios.get(`/alunos/${id}`);
         const Foto = get(data, 'Fotos[0].url', '');
+
+        setfoto(Foto);
 
         setNome(data.nome);
         setSobrenome(data.sobrenome);
@@ -135,6 +139,20 @@ function Aluno() {
     <Container>
       <Loading isLoading={isLoading} />
       <h1>{id ? 'Editar Aluno' : 'Novo Aluno'}</h1>
+
+      {id && (
+        <ProfilePicture>
+          {foto ? (
+            <img src={foto} alt={nome} crossOrigin="" />
+          ) : (
+            <FaUserCircle size={100} />
+          )}
+          <Link to={`/fotos/${id}`}>
+            <FaEdit size={24} />
+          </Link>
+        </ProfilePicture>
+      )}
+
       <Form onSubmit={handleSubmit}>
         <input
           type="text"
